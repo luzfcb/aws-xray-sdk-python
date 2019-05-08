@@ -1,5 +1,6 @@
 import os
 import logging
+from distutils.util import strtobool
 
 log = logging.getLogger(__name__)
 
@@ -27,7 +28,7 @@ class SDKConfig(object):
             to occur.
     """
     XRAY_ENABLED_KEY = 'AWS_XRAY_SDK_ENABLED'
-    __SDK_ENABLED = str(os.getenv(XRAY_ENABLED_KEY, 'true')).lower() != 'false'
+    __SDK_ENABLED = strtobool(os.getenv(XRAY_ENABLED_KEY, 'true'))
 
     @classmethod
     def sdk_enabled(cls):
